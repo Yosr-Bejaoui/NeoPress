@@ -1,0 +1,37 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "seed:admin": "node seed-admin.js --name \"Admin User\" --email admin@neopress.local --password Admin123!",
+    "seed:admin2": "node seed-admin.js --name \"Second Admin\" --email admin2@neopress.local --password Admin456!",
+    "setup:db": "node setup-mongo.js",
+    "create:indexes": "node -e \"import('./utils/database.js').then(m => m.createIndexes())\"",
+    "health:check": "node -e \"import('./utils/database.js').then(m => m.checkDatabaseHealth()).then(console.log)\"",
+    "logs": "tail -f logs/combined.log",
+    "logs:error": "tail -f logs/error.log",
+    "generate:ssl": "node scripts/generate-ssl-certs.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "axios": "^1.11.0",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.1.5",
+    "express-validator": "^7.0.1",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.17.0",
+    "mongoose": "^8.16.3",
+    "winston": "^3.11.0"
+  }
+}
