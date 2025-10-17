@@ -2,7 +2,7 @@
 
 A modern, full-stack news platform that leverages AI to generate and manage news articles with real-time analytics and content management capabilities.
 
-## 🚀 Features
+## Features
 
 - **AI-Powered Article Generation** using Google Gemini
 - **Real-time News Integration** with NewsAPI
@@ -14,7 +14,7 @@ A modern, full-stack news platform that leverages AI to generate and manage news
 - **Database Optimization** with proper indexing
 - **Docker Support** for easy deployment
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 - React 19.1.1
@@ -31,14 +31,14 @@ A modern, full-stack news platform that leverages AI to generate and manage news
 - Express Rate Limiting
 - Helmet Security
 
-## 📋 Prerequisites
+## Prerequisites
 
 - Node.js 18+
 - MongoDB (local or Atlas)
 - Google Gemini API Key
 - NewsAPI Key
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Clone the Repository
 ```bash
@@ -111,7 +111,7 @@ npm start
 
 Visit `http://localhost:3000` to see the application.
 
-## 🐳 Docker Deployment
+## Docker Deployment
 
 ### Using Docker Compose
 ```bash
@@ -130,7 +130,7 @@ docker-compose exec neopress node seed-admin.js --name "Admin User" --email admi
 docker-compose exec neopress node seed-admin.js
 ```
 
-## 📊 API Endpoints
+## API Endpoints
 
 ### Authentication
 - `POST /api/auth/login` - Admin login
@@ -152,7 +152,7 @@ docker-compose exec neopress node seed-admin.js
 ### Health
 - `GET /health` - Health check endpoint
 
-## 🔧 Development
+## Development
 
 ### Available Scripts
 
@@ -172,7 +172,7 @@ npm run build      # Build for production
 npm test           # Run tests
 ```
 
-## 🛡️ Security Features
+## Security Features
 
 - **JWT Authentication** with secure token handling
 - **Rate Limiting** to prevent abuse
@@ -182,7 +182,7 @@ npm test           # Run tests
 - **Error Handling** with proper logging
 - **SQL Injection Protection** with Mongoose
 
-## 📈 Performance Optimizations
+## Performance Optimizations
 
 - **Database Indexing** for faster queries
 - **Connection Pooling** for MongoDB
@@ -191,7 +191,7 @@ npm test           # Run tests
 - **Request Size Limits**
 - **Graceful Shutdown** handling
 
-## 🚀 Production Deployment
+## Production Deployment
 
 See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed production deployment instructions.
 
