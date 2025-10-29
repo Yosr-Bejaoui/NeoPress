@@ -70,7 +70,7 @@ app.use("/api/articles", articleRoutes);
 app.use("/api/analytics", analyticsRoutes);
 app.use("/api/auth", authLimiter, adminRoutes);
 
-// API root endpoint
+// API root endpoint - works in all environments
 app.get('/', (req, res) => {
   res.json({
     success: true,
@@ -78,10 +78,18 @@ app.get('/', (req, res) => {
     version: '1.0.0',
     documentation: '/api/docs',
     health: '/health',
-    environment: process.env.NODE_ENV
+    environment: process.env.NODE_ENV,
+    endpoints: {
+      health: '/health',
+      articles: '/api/articles',
+      news: '/api/news',
+      analytics: '/api/analytics',
+      auth: '/api/auth'
+    }
   });
 });
 
+// 404 handler - must be after all routes
 app.use(notFoundHandler);
 
 app.use(errorHandler);
@@ -115,6 +123,8 @@ const connectDB = async () => {
 
     console.log('Attempting to connect to MongoDB...');
     await mongoose.connect(mongoUri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
       maxPoolSize: 10,
       serverSelectionTimeoutMS: 30000,
       socketTimeoutMS: 45000,
