@@ -32,7 +32,7 @@ if (!password) {
 async function main() {
   try {
     console.log("🔧 Connecting to MongoDB...", mongoUri);
-    await mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
+    await mongoose.connect(mongoUri);
     console.log("✅ Connected");
 
     const existing = await Admin.findOne({ email });

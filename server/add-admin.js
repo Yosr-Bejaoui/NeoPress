@@ -8,7 +8,7 @@ const MONGO_URI = process.env.MONGODB_URI || process.env.MONGO_URI;
 
 async function addAdmin(fullName, email, password) {
   try {
-    await mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+    await mongoose.connect(MONGO_URI);
     const existingAdmin = await Admin.findOne({ email });
     if (existingAdmin) {
       console.error('Admin with this email already exists.');

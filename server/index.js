@@ -121,8 +121,6 @@ const connectDB = async () => {
 
     console.log('Attempting to connect to MongoDB...');
     await mongoose.connect(mongoUri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
       maxPoolSize: 10,
       serverSelectionTimeoutMS: 30000,
       socketTimeoutMS: 45000,

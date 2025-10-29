@@ -8,10 +8,7 @@ const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/neopre
 console.log('Testing MongoDB connection...');
 console.log('Connection string:', MONGODB_URI);
 
-mongoose.connect(MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => {
+mongoose.connect(MONGODB_URI).then(() => {
   console.log('MongoDB connected successfully!');
   console.log('Database:', mongoose.connection.db.databaseName);
   process.exit(0);
