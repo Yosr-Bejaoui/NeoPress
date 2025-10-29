@@ -70,23 +70,17 @@ app.use("/api/articles", articleRoutes);
 app.use("/api/analytics", analyticsRoutes);
 app.use("/api/auth", authLimiter, adminRoutes);
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/build')));
-  
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+// API root endpoint
+app.get('/', (req, res) => {
+  res.json({
+    success: true,
+    message: 'NeoPress API',
+    version: '1.0.0',
+    documentation: '/api/docs',
+    health: '/health',
+    environment: process.env.NODE_ENV
   });
-} else {
-  app.get('/', (req, res) => {
-    res.json({
-      success: true,
-      message: 'NeoPress API',
-      version: '1.0.0',
-      documentation: '/api/docs',
-      health: '/health'
-    });
-  });
-}
+});
 
 app.use(notFoundHandler);
 
