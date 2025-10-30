@@ -32,12 +32,12 @@ Update these settings:
 
 **Build Command:**
 ```bash
-cd client && npm install && npm run build && cd ../server && npm install
+npm run build
 ```
 
 **Start Command:**
 ```bash
-cd server && node index.js
+npm start
 ```
 
 ### Step 3: Add Environment Variables

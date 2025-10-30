@@ -86,11 +86,40 @@ console.log('  - /api/auth/register (POST)');
 console.log('  - /api/auth/me (GET)');
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/build')));
+  const buildPath = path.join(__dirname, '../client/build');
   
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-  });
+  // Check if build directory exists
+  if (fs.existsSync(buildPath)) {
+    logger.info(`Serving static files from: ${buildPath}`);
+    app.use(express.static(buildPath));
+    
+    app.get('*', (req, res) => {
+      const indexPath = path.join(buildPath, 'index.html');
+      if (fs.existsSync(indexPath)) {
+        res.sendFile(indexPath);
+      } else {
+        res.status(404).json({
+          success: false,
+          message: 'Frontend build not found. Please run: cd client && npm run build'
+        });
+      }
+    });
+  } else {
+    logger.warn('Build directory not found. Running in API-only mode.');
+    app.get('*', (req, res) => {
+      res.status(404).json({
+        success: false,
+        message: 'Frontend not built. This is an API-only deployment.',
+        api_endpoints: {
+          health: '/health',
+          articles: '/api/articles',
+          news: '/api/news',
+          analytics: '/api/analytics',
+          auth: '/api/auth'
+        }
+      });
+    });
+  }
 } else {
   app.get('/', (req, res) => {
     res.json({
