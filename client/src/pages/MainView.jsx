@@ -3,7 +3,6 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Header from '../components/MainHeader';
 import HeroSection from '../components/HeroSection';
 import TrendingSection from '../components/TrendingSection';
-import SearchFilterBar from '../components/SearchFilterBar';
 import ArticleCard from '../components/MainArticleCard';
 import { ArticleCardSkeleton } from '../components/LoadingSkeleton';
 import Footer from '../components/Footer';
@@ -27,7 +26,6 @@ const MainView = () => {
   const [allArticles, setAllArticles] = useState([]);
   const [filteredArticles, setFilteredArticles] = useState([]);
   const [trendingArticle, setTrendingArticle] = useState(null);
-  const [categories, setCategories] = useState(['All']);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -35,7 +33,6 @@ const MainView = () => {
   const [selectedRegion, setSelectedRegion] = useState('all');
   const [visibleCount, setVisibleCount] = useState(9);
   const pageSize = 12;  
-  const [hasMore, setHasMore] = useState(true);
   const loadMoreRef = useRef(null);
   
 
@@ -58,7 +55,7 @@ const MainView = () => {
 
 
  
-  const mapRegionToBackend = useCallback((region) => {
+  const mapRegionToBackend = (region) => {
     const regionMap = {
       'local': 'Local',
       'national': 'National',
@@ -72,9 +69,9 @@ const MainView = () => {
       'international': 'International'
     };
     return regionMap[region] || 'International';
-  }, []);
+  };
 
-  const mapCategoryToBackend = useCallback((category) => {
+  const mapCategoryToBackend = (category) => {
     const categoryMap = {
       'tech': 'Technology',
       'health': 'Health & Wellness',
@@ -95,7 +92,7 @@ const MainView = () => {
       'opinion': 'Opinion & Analysis'
     };
     return categoryMap[category] || category;
-  }, []);
+  };
 
 
   const debouncedSearch = useCallback(
@@ -173,12 +170,6 @@ const MainView = () => {
           setTrendingArticle(trending);
           
          
-          const uniqueCategories = ['All', ...new Set(
-            articles
-              .map(article => article.category)
-              .filter(category => category && category.trim() !== '')
-          )];
-          setCategories(uniqueCategories);
         } else {
           setError('Invalid data received from server');
         }
@@ -203,60 +194,6 @@ const MainView = () => {
     const newUrl = `${window.location.pathname}${queryString ? `?${queryString}` : ''}`;
     window.history.replaceState(null, '', newUrl);
   }, [searchQuery, selectedCategory, selectedRegion]);
-
-  const handleCategoryChange = (category) => {
-    setSelectedCategory(category);
-    setSearchQuery('');
-  };
-
-  const handleRegionChange = (region) => {
-    setSelectedRegion(region);
-    setSearchQuery('');
-  };
-
-
-  const handleApproveArticle = async (articleId) => {
-    try {
-      await articleService.approveArticle(articleId);
-     
-      const response = await articleService.getArticles({ 
-        status: 'all',
-        sort: '-createdAt',
-        category: selectedCategory !== 'All' ? mapCategoryToBackend(selectedCategory) : undefined,
-        region: selectedRegion !== 'all' ? mapRegionToBackend(selectedRegion) : undefined
-      });
-      const articles = response.articles || response.data || response;
-      if (Array.isArray(articles)) {
-        setAllArticles(articles);
-        setFilteredArticles(articles);
-      }
-    } catch (error) {
-      console.error('Failed to approve article:', error);
-      alert('Failed to approve article. Please try again.');
-    }
-  };
-
-
-  const handleRejectArticle = async (articleId) => {
-    try {
-      await articleService.rejectArticle(articleId);
-     
-      const response = await articleService.getArticles({ 
-        status: 'all',
-        sort: '-createdAt',
-        category: selectedCategory !== 'All' ? mapCategoryToBackend(selectedCategory) : undefined,
-        region: selectedRegion !== 'all' ? mapRegionToBackend(selectedRegion) : undefined
-      });
-      const articles = response.articles || response.data || response;
-      if (Array.isArray(articles)) {
-        setAllArticles(articles);
-        setFilteredArticles(articles);
-      }
-    } catch (error) {
-      console.error('Failed to reject article:', error);
-      alert('Failed to reject article. Please try again.');
-    }
-  };
 
 
 
@@ -295,7 +232,6 @@ const MainView = () => {
     const filtered = filterArticles(allArticles, searchQuery, selectedCategory, selectedRegion);
     setFilteredArticles(filtered);
     setVisibleCount(pageSize); 
-    setHasMore(filtered.length > pageSize);
     
     if (filtered.length > 0) {
       const trending = filtered.reduce((prev, current) => 
@@ -305,7 +241,7 @@ const MainView = () => {
     } else {
       setTrendingArticle(null);
     }
-  }, [searchQuery, selectedCategory, selectedRegion, allArticles, filterArticles]);
+  }, [searchQuery, selectedCategory, selectedRegion, allArticles, filterArticles, pageSize]);
 
   useEffect(() => {
     if (!loadMoreRef.current) return;
