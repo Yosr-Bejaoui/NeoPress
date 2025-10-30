@@ -1,0 +1,25 @@
+{
+  "name": "neopress",
+  "version": "1.0.0",
+  "description": "AI-Powered News Platform",
+  "scripts": {
+    "install-all": "cd server && npm install && cd ../client && npm install",
+    "build": "cd client && npm install && npm run build",
+    "start": "cd server && node index.js",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Yosr-Bejaoui/NeoPress.git"
+  },
+  "keywords": [
+    "news",
+    "ai",
+    "gemini",
+    "react",
+    "node"
+  ],
+  "author": "Yosr Bejaoui",
+  "license": "ISC"
+}
