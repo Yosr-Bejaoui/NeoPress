@@ -4,7 +4,12 @@ services:
     env: node
     region: oregon
     plan: free
-    buildCommand: npm run build
+    buildCommand: |
+      echo "Starting build process..."
+      cd client && npm install && npm run build
+      echo "Client build complete. Installing server dependencies..."
+      cd ../server && npm install
+      echo "Build finished successfully!"
     startCommand: npm start
     envVars:
       - key: NODE_ENV
