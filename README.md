@@ -12,7 +12,6 @@ A modern, full-stack news platform that leverages AI to generate and manage news
 - **Secure Authentication** with JWT tokens
 - **Rate Limiting** and security middleware
 - **Database Optimization** with proper indexing
-- **Docker Support** for easy deployment
 
 
 ## Test the Dashboard
@@ -42,13 +41,6 @@ Access the dashboard at: https://neopress-n4qq.onrender.com/login
 - Winston Logging
 - Express Rate Limiting
 - Helmet Security
-
-## Prerequisites
-
-- Node.js 18+
-- MongoDB (local or Atlas)
-- Google Gemini API Key
-- NewsAPI Key
 
 
 ## API Endpoints
