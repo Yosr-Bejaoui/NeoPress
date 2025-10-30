@@ -1,142 +1,44 @@
-# 🗞️ NeoPress - AI-Powered News Platform
+# NeoPress - AI-Powered News Platform
 
-<div align="center">
+A modern, full-stack news platform that leverages AI to generate and manage news articles with real-time analytics and content management capabilities.
 
-![NeoPress Banner](https://img.shields.io/badge/NeoPress-AI%20News%20Platform-blue?style=for-the-badge)
-[![Live Demo](https://img.shields.io/badge/Live-Demo-success?style=for-the-badge)](YOUR_DEMO_URL_HERE)
-[![License: ISC](https://img.shields.io/badge/License-ISC-yellow?style=for-the-badge)](LICENSE)
+## Features
 
-A modern, full-stack news platform that leverages AI to generate and manage news articles with real-time analytics and advanced content management capabilities.
+- **AI-Powered Article Generation** using Google Gemini
+- **Real-time News Integration** with NewsAPI
+- **Advanced Analytics Dashboard** with engagement metrics
+- **Content Management System** for editors and admins
+- **Responsive Design** with modern UI/UX
+- **Secure Authentication** with JWT tokens
+- **Rate Limiting** and security middleware
+- **Database Optimization** with proper indexing
+- **Docker Support** for easy deployment
 
-[Features](#-features) • [Demo](#-live-demo) • [Tech Stack](#-tech-stack) • [Installation](#-installation) • [API Docs](#-api-endpoints)
-
-</div>
-
----
-
-## 🚀 Live Demo
-
-### 🌐 Try It Now!
-
-**Frontend URL:** [YOUR_FRONTEND_URL_HERE](YOUR_FRONTEND_URL_HERE)
-
-**Backend API:** [YOUR_BACKEND_URL_HERE](YOUR_BACKEND_URL_HERE)
-
-### 🔐 Demo Admin Access
-
-Want to test the admin dashboard? Use these credentials:
-
-```
-📧 Email: demo@neopress.com
-🔑 Password: Demo123!
-```
-
-**What you can do:**
-- ✅ View analytics dashboard
-- ✅ Generate AI-powered articles
-- ✅ Manage existing articles
-- ✅ View real-time statistics
-- ✅ Test article generation with Gemini AI
-- ✅ Explore the content management system
-
-> **Note:** Demo account has full admin access. Please be respectful and don't delete existing content.
-
-## ✨ Features
-
-### 🤖 AI & Content
-- **AI-Powered Article Generation** - Leverage Google Gemini to create high-quality news articles
-- **Real-time News Integration** - Fetch latest news from NewsAPI across multiple categories
-- **Multi-Region Support** - Tunisia, MENA region, and global news coverage
-- **Smart Content Categorization** - Auto-categorize articles by topic
-
-### 📊 Analytics & Insights
-- **Advanced Analytics Dashboard** - Track views, engagement, and performance metrics
-- **Trending Articles** - Real-time trending content based on user engagement
-- **Performance Metrics** - Detailed analytics per article and category
-- **Visual Data Representation** - Charts and graphs for easy data interpretation
-
-### 🎨 User Experience
-- **Modern Responsive Design** - Beautiful UI that works on all devices
-- **Dark Mode Support** - Easy on the eyes, day or night
-- **Intuitive Navigation** - Clean, user-friendly interface
-- **Fast Loading** - Optimized performance for quick page loads
-
-### 🔒 Security & Performance
-- **JWT Authentication** - Secure token-based admin authentication
-- **Rate Limiting** - Protect API endpoints from abuse
-- **Input Validation** - Comprehensive request validation
-- **Security Headers** - Helmet.js for enhanced security
-- **Database Optimization** - Indexed queries for faster performance
-- **Error Handling** - Graceful error management with detailed logging
-
-### 🛠️ Development
-- **RESTful API** - Clean, well-documented API endpoints
-- **MongoDB Integration** - Efficient NoSQL database with Mongoose ODM
-- **Docker Support** - Easy containerized deployment
-- **Modular Architecture** - Clean code structure for easy maintenance
-
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
-| Technology | Purpose |
-|------------|---------|
-| ![React](https://img.shields.io/badge/React-19.1.1-61DAFB?logo=react&logoColor=white) | UI Framework |
-| ![React Router](https://img.shields.io/badge/React_Router-7.7.1-CA4245?logo=react-router&logoColor=white) | Client-side routing |
-| ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-38B2AC?logo=tailwind-css&logoColor=white) | Styling framework |
-| ![Axios](https://img.shields.io/badge/Axios-1.11.0-5A29E4?logo=axios&logoColor=white) | HTTP client |
-| ![Lucide React](https://img.shields.io/badge/Lucide-Icons-orange) | Icon library |
+- React 19.1.1
+- Tailwind CSS
+- Lucide React Icons
+- Axios for API calls
 
 ### Backend
-| Technology | Purpose |
-|------------|---------|
-| ![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js&logoColor=white) | Runtime environment |
-| ![Express](https://img.shields.io/badge/Express-4.18-000000?logo=express&logoColor=white) | Web framework |
-| ![MongoDB](https://img.shields.io/badge/MongoDB-7.x-47A248?logo=mongodb&logoColor=white) | Database |
-| ![Mongoose](https://img.shields.io/badge/Mongoose-8.x-880000) | ODM |
-| ![JWT](https://img.shields.io/badge/JWT-Auth-000000?logo=json-web-tokens) | Authentication |
-| ![Google Gemini](https://img.shields.io/badge/Google-Gemini_AI-4285F4?logo=google&logoColor=white) | AI article generation |
-| ![Winston](https://img.shields.io/badge/Winston-Logging-yellow) | Logging system |
-| ![Helmet](https://img.shields.io/badge/Helmet-Security-green) | Security middleware |
+- Node.js with Express
+- MongoDB with Mongoose
+- JWT Authentication
+- Google Gemini AI
+- Winston Logging
+- Express Rate Limiting
+- Helmet Security
 
-### DevOps & Tools
-- **Docker** - Containerization
-- **Render** - Cloud hosting
-- **Git & GitHub** - Version control
+## Prerequisites
 
-## 📸 Screenshots
+- Node.js 18+
+- MongoDB (local or Atlas)
+- Google Gemini API Key
+- NewsAPI Key
 
-### Homepage - Article Feed
-![Homepage](https://via.placeholder.com/800x400/1a1a1a/ffffff?text=NeoPress+Homepage)
-
-### Admin Dashboard
-![Dashboard](https://via.placeholder.com/800x400/1a1a1a/ffffff?text=Admin+Dashboard)
-
-### AI Article Generation
-![AI Generation](https://via.placeholder.com/800x400/1a1a1a/ffffff?text=AI+Article+Generation)
-
-### Analytics View
-![Analytics](https://via.placeholder.com/800x400/1a1a1a/ffffff?text=Analytics+Dashboard)
-
-> **Note:** Replace these placeholder images with actual screenshots of your application
-
----
-
-## 📋 Prerequisites
-
-Before you begin, ensure you have the following installed:
-
-- ✅ **Node.js** 18+ ([Download](https://nodejs.org/))
-- ✅ **MongoDB** local or [Atlas](https://www.mongodb.com/cloud/atlas)
-- ✅ **Git** ([Download](https://git-scm.com/))
-
-And obtain these API keys:
-
-- 🔑 **Google Gemini API Key** - [Get it here](https://makersuite.google.com/app/apikey)
-- 🔑 **NewsAPI Key** - [Get it here](https://newsapi.org/register)
-
----
-
-## 🚀 Installation & Setup
+## Quick Start
 
 ### 1. Clone the Repository
 ```bash
@@ -341,166 +243,21 @@ REACT_APP_VERSION=1.0.0
 
 This project is licensed under the ISC License.
 
-## 📊 Project Structure
+## 🆘 Support
 
-```
-NeoPress/
-├── client/                 # React frontend
-│   ├── public/            # Static files
-│   ├── src/
-│   │   ├── components/    # React components
-│   │   ├── context/       # Context providers
-│   │   ├── hooks/         # Custom hooks
-│   │   ├── pages/         # Page components
-│   │   ├── services/      # API services
-│   │   ├── App.js         # Main app component
-│   │   └── index.js       # Entry point
-│   ├── package.json
-│   └── tailwind.config.js
-│
-├── server/                # Node.js backend
-│   ├── config/           # Configuration files
-│   ├── controllers/      # Route controllers
-│   ├── middleware/       # Custom middleware
-│   ├── models/           # Mongoose models
-│   ├── routes/           # API routes
-│   ├── utils/            # Utility functions
-│   ├── index.js          # Server entry point
-│   └── package.json
-│
-├── .github/              # GitHub workflows
-├── docker-compose.yml    # Docker configuration
-└── README.md            # You are here!
-```
+For support and questions:
+- Check the [DEPLOYMENT.md](./DEPLOYMENT.md) guide
+- Review the logs for error details
+- Check GitHub issues
+- Contact the development team
 
----
+## 🔄 Changelog
 
-## 🎯 Use Cases
-
-### For Content Creators
-- Generate article ideas using AI
-- Quick drafts for breaking news
-- Multi-language article support
-
-### For News Organizations
-- Automated news aggregation
-- Real-time content management
-- Performance analytics
-
-### For Developers
-- RESTful API for integration
-- Webhook support
-- Open-source and customizable
-
----
-
-## 🔄 Roadmap
-
-### v1.1 (Coming Soon)
-- [ ] Multi-language support
-- [ ] Social media sharing
-- [ ] Comment system
-- [ ] Article scheduling
-- [ ] Email notifications
-
-### v1.2 (Planned)
-- [ ] User accounts and profiles
-- [ ] Bookmarking system
-- [ ] Advanced search filters
-- [ ] Mobile app (React Native)
-- [ ] RSS feed support
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! Here's how you can help:
-
-1. **Fork the repository**
-2. **Create a feature branch**
-   ```bash
-   git checkout -b feature/AmazingFeature
-   ```
-3. **Commit your changes**
-   ```bash
-   git commit -m 'Add some AmazingFeature'
-   ```
-4. **Push to the branch**
-   ```bash
-   git push origin feature/AmazingFeature
-   ```
-5. **Open a Pull Request**
-
-### Contribution Guidelines
-- Follow the existing code style
-- Write meaningful commit messages
-- Add tests for new features
-- Update documentation as needed
-- Be respectful and constructive
-
----
-
-## � License
-
-This project is licensed under the **ISC License**.
-
-```
-Copyright (c) 2025 NeoPress Team
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-```
-
----
-
-## 👥 Authors & Contributors
-
-- **Your Name** - *Initial work* - [@YourGitHub](https://github.com/Yosr-Bejaoui)
-
-See also the list of [contributors](https://github.com/Yosr-Bejaoui/NeoPress/contributors) who participated in this project.
-
----
-
-## 🙏 Acknowledgments
-
-- **Google Gemini AI** for powering article generation
-- **NewsAPI** for real-time news data
-- **MongoDB** for robust database solution
-- **React** team for amazing frontend framework
-- **Open Source Community** for inspiration and tools
-
----
-
-## 📧 Contact & Support
-
-### Having Issues?
-- 📖 Check the [Documentation](./DEPLOYMENT_GUIDE.md)
-- 🐛 Report bugs via [GitHub Issues](https://github.com/Yosr-Bejaoui/NeoPress/issues)
-- 💬 Join discussions on [GitHub Discussions](https://github.com/Yosr-Bejaoui/NeoPress/discussions)
-
-### Connect With Us
-- 🌐 Website: [YOUR_WEBSITE](YOUR_WEBSITE)
-- 📧 Email: [your.email@example.com](mailto:your.email@example.com)
-- 🐦 Twitter: [@YourTwitter](https://twitter.com/YourTwitter)
-- 💼 LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
-
----
-
-## ⭐ Show Your Support
-
-Give a ⭐️ if this project helped you!
-
-[![GitHub stars](https://img.shields.io/github/stars/Yosr-Bejaoui/NeoPress?style=social)](https://github.com/Yosr-Bejaoui/NeoPress/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/Yosr-Bejaoui/NeoPress?style=social)](https://github.com/Yosr-Bejaoui/NeoPress/network/members)
-
----
-
-<div align="center">
-
-**Made with ❤️ by the NeoPress Team**
-
-[⬆ Back to Top](#-neopress---ai-powered-news-platform)
-
-</div>
+### v1.0.0
+- Initial release
+- AI-powered article generation
+- Real-time news integration
+- Analytics dashboard
+- Content management system
+- Security and performance optimizations
 

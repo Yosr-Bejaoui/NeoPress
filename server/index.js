@@ -65,31 +65,44 @@ app.get('/health', (req, res) => {
   });
 });
 
+// Log all incoming requests for debugging
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.path}`);
+  next();
+});
+
 app.use("/api/news", newsRoutes);
 app.use("/api/articles", articleRoutes);
 app.use("/api/analytics", analyticsRoutes);
 app.use("/api/auth", authLimiter, adminRoutes);
 
-// API root endpoint - works in all environments
-app.get('/', (req, res) => {
-  res.json({
-    success: true,
-    message: 'NeoPress API',
-    version: '1.0.0',
-    documentation: '/api/docs',
-    health: '/health',
-    environment: process.env.NODE_ENV,
-    endpoints: {
-      health: '/health',
-      articles: '/api/articles',
-      news: '/api/news',
-      analytics: '/api/analytics',
-      auth: '/api/auth'
-    }
-  });
-});
+// Log registered routes for debugging
+console.log('Registered API routes:');
+console.log('  - /api/news/*');
+console.log('  - /api/articles/*');
+console.log('  - /api/analytics/*');
+console.log('  - /api/auth/login (POST)');
+console.log('  - /api/auth/register (POST)');
+console.log('  - /api/auth/me (GET)');
 
-// 404 handler - must be after all routes
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+  
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+  });
+} else {
+  app.get('/', (req, res) => {
+    res.json({
+      success: true,
+      message: 'NeoPress API',
+      version: '1.0.0',
+      documentation: '/api/docs',
+      health: '/health'
+    });
+  });
+}
+
 app.use(notFoundHandler);
 
 app.use(errorHandler);

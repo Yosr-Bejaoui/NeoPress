@@ -3,19 +3,9 @@
   "name": "NeoPress - AI-Powered News Platform",
   "icons": [
     {
-      "src": "n-icon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "n-192.png",
-      "type": "image/png",
+      "src": "ll.jpg",
+      "type": "image/jpeg",
       "sizes": "192x192"
-    },
-    {
-      "src": "n-512.png",
-      "type": "image/png",
-      "sizes": "512x512"
     }
   ],
   "start_url": ".",

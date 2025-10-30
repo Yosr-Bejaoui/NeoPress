@@ -1,10 +1,33 @@
 import axios from 'axios';
 
+// Determine the API base URL based on environment
+const getApiBaseUrl = () => {
+  // If explicitly set in environment, use it
+  if (process.env.REACT_APP_API_URL) {
+    return process.env.REACT_APP_API_URL;
+  }
+  
+  // In production (on Render), use relative path so it uses the same domain
+  if (process.env.NODE_ENV === 'production') {
+    return '/api';
+  }
+  
+  // Development fallback
+  return 'http://localhost:5001/api';
+};
+
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5001/api',
+  baseURL: getApiBaseUrl(),
   headers: {
     'Content-Type': 'application/json'
   },
+});
+
+// Log the configuration for debugging
+console.log('[API CONFIG]', {
+  baseURL: getApiBaseUrl(),
+  NODE_ENV: process.env.NODE_ENV,
+  REACT_APP_API_URL: process.env.REACT_APP_API_URL
 });
 
 api.interceptors.request.use(

@@ -5,10 +5,9 @@ import { generateArticle as generateWithGemini } from "../utils/gemini.js";
 export const getArticles = async (req, res) => {
   try {
     console.log('📄 Fetching articles from database...');
-    console.log('📋 Query params:', req.query);
     
    
-    const { category, region, status = 'all', limit, sort } = req.query;
+    const { category, region, status = 'all', limit } = req.query;
 
     const filterQuery = {};
     
@@ -26,23 +25,8 @@ export const getArticles = async (req, res) => {
     
     console.log('🔍 Filter query:', filterQuery);
     
-    // Handle sort parameter
-    let sortOption = { createdAt: -1 }; // Default sort
-    if (sort) {
-      sortOption = {};
-      const sortFields = sort.split(',');
-      sortFields.forEach(field => {
-        if (field.startsWith('-')) {
-          sortOption[field.substring(1)] = -1;
-        } else {
-          sortOption[field] = 1;
-        }
-      });
-    }
-    console.log('🔀 Sort option:', sortOption);
-    
     let query = Article.find(filterQuery)
-      .sort(sortOption);
+      .sort({ createdAt: -1 });
     
     if (limit) {
       query = query.limit(parseInt(limit));
