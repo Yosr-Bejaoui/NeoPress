@@ -18,7 +18,6 @@ const cliUri = argValue("--uri");
 
 const mongoUri = cliUri || process.env.MONGODB_URI || process.env.MONGO_URI || "mongodb://localhost:27017/neopress";
 
-// Validate required credentials
 if (!email) {
   console.error("❌ Email is required. Provide it via --email flag or DEFAULT_ADMIN_EMAIL environment variable.");
   process.exit(1);
@@ -32,7 +31,7 @@ if (!password) {
 async function main() {
   try {
     console.log("🔧 Connecting to MongoDB...", mongoUri);
-    await mongoose.connect(mongoUri);
+    await mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
     console.log("✅ Connected");
 
     const existing = await Admin.findOne({ email });

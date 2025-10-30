@@ -154,14 +154,21 @@ export const validateArticleGeneration = [
 ];
 
 export const validateAdminLogin = [
-  body('identifier')
-    .trim()
-    .notEmpty()
-    .withMessage('Email or username is required'),
-  
   body('password')
+    .notEmpty()
+    .withMessage('Password is required')
     .isLength({ min: 6 })
     .withMessage('Password must be at least 6 characters'),
+  
+  // Custom validation: require either identifier OR email
+  body()
+    .custom((value, { req }) => {
+      const { identifier, email } = req.body;
+      if (!identifier && !email) {
+        throw new Error('Email or identifier is required');
+      }
+      return true;
+    }),
   
   handleValidationErrors
 ];
