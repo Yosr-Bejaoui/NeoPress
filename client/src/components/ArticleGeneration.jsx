@@ -177,19 +177,13 @@ const ArticleGeneration = ({ onBack, onArticleGenerated }) => {
     setNewsState(prev => ({ ...prev, loading: true, error: null }));
     
     try {
-      const limit = 100;
+      const limit = 50; // Reduced from 100
       let allArticles = [];
       
-      console.log('Fetching news from all sources...');
+      console.log('Fetching news from selected sources...');
+      
+      // Only fetch from 3-4 sources instead of 10
       const fetchPromises = [
-        newsService.getTunisiaNews(limit).catch(err => {
-          console.error('Tunisia news error:', err);
-          return { articles: [] };
-        }),
-        newsService.getMenaNews(limit).catch(err => {
-          console.error('MENA news error:', err);
-          return { articles: [] };
-        }),
         newsService.getPopularNews().catch(err => {
           console.error('Popular news error:', err);
           return { articles: [] };
@@ -198,28 +192,8 @@ const ArticleGeneration = ({ onBack, onArticleGenerated }) => {
           console.error('World news error:', err);
           return { articles: [] };
         }),
-        newsService.getNewsByCategory('tech', limit).catch(err => {
-          console.error('Tech news error:', err);
-          return { articles: [] };
-        }),
-        newsService.getNewsByCategory('business', limit).catch(err => {
-          console.error('Business news error:', err);
-          return { articles: [] };
-        }),
-        newsService.getNewsByCategory('health', limit).catch(err => {
-          console.error('Health news error:', err);
-          return { articles: [] };
-        }),
-        newsService.getNewsByCategory('sports', limit).catch(err => {
-          console.error('Sports news error:', err);
-          return { articles: [] };
-        }),
-        newsService.getNewsByCategory('entertainment', limit).catch(err => {
-          console.error('Entertainment news error:', err);
-          return { articles: [] };
-        }),
-        newsService.getNewsByCategory('science', limit).catch(err => {
-          console.error('Science news error:', err);
+        newsService.getTunisiaNews(limit).catch(err => {
+          console.error('Tunisia news error:', err);
           return { articles: [] };
         })
       ];
@@ -545,14 +519,19 @@ const ArticleGeneration = ({ onBack, onArticleGenerated }) => {
   }, [success, uiState.selectedNews, uiState.validationErrors, clearSuccess]);
 
   useEffect(() => {
-    if (formData.newsSource) {
+    // Only fetch if we don't have news or if it's been more than 5 minutes
+    const shouldFetch = !newsState.news.length || 
+      !newsState.lastFetched || 
+      (Date.now() - newsState.lastFetched.getTime() > 5 * 60 * 1000);
+    
+    if (formData.newsSource && shouldFetch) {
       const timeoutId = setTimeout(() => {
         fetchNews(formData.newsSource);
       }, 300);
       
       return () => clearTimeout(timeoutId);
     }
-  }, [formData.newsSource, fetchNews]);
+  }, [formData.newsSource, fetchNews, newsState.news.length, newsState.lastFetched]);
 
 const formatDate = (date) => {
   if (!date) return '';
